@@ -1,0 +1,486 @@
+:root {
+  --lang-bg: rgba(11, 18, 32, 0.76);
+  --lang-border: rgba(124, 58, 237, 0.28);
+  --lang-active: linear-gradient(135deg, #2563eb, #7c3aed);
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+}
+
+.suspense-fallback {
+  padding: 4rem 1rem;
+}
+
+/* ===  REVEAL ANIMATIONS (CSS-driven, safe with Suspense lazy loading) === */
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes revealIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes revealScale {
+  from {
+    opacity: 0;
+    transform: scale(0.93);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes revealLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes revealRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-up {
+  animation: revealUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.fade-in {
+  animation: revealIn 0.55s ease both;
+}
+.scale-in {
+  animation: revealScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.slide-left {
+  animation: revealLeft 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.slide-right {
+  animation: revealRight 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Override legacy js-enabled hiding rules (we no longer add that class) */
+.js-enabled .fade-up,
+.js-enabled .fade-in,
+.js-enabled .slide-left,
+.js-enabled .slide-right,
+.js-enabled .scale-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger grid children */
+.services-grid .service-card:nth-child(1) {
+  animation-delay: 0s;
+}
+.services-grid .service-card:nth-child(2) {
+  animation-delay: 0.07s;
+}
+.services-grid .service-card:nth-child(3) {
+  animation-delay: 0.14s;
+}
+.services-grid .service-card:nth-child(4) {
+  animation-delay: 0.21s;
+}
+.services-grid .service-card:nth-child(5) {
+  animation-delay: 0.28s;
+}
+.services-grid .service-card:nth-child(6) {
+  animation-delay: 0.35s;
+}
+.testimonials-grid .testimonial-card:nth-child(1) {
+  animation-delay: 0s;
+}
+.testimonials-grid .testimonial-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.testimonials-grid .testimonial-card:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.portfolio-grid .portfolio-card:nth-child(1) {
+  animation-delay: 0s;
+}
+.portfolio-grid .portfolio-card:nth-child(2) {
+  animation-delay: 0.08s;
+}
+.portfolio-grid .portfolio-card:nth-child(3) {
+  animation-delay: 0.16s;
+}
+.process-grid .process-step:nth-child(1) {
+  animation-delay: 0s;
+}
+.process-grid .process-step:nth-child(2) {
+  animation-delay: 0.08s;
+}
+.process-grid .process-step:nth-child(3) {
+  animation-delay: 0.16s;
+}
+.process-grid .process-step:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up,
+  .fade-in,
+  .scale-in,
+  .slide-left,
+  .slide-right {
+    animation: none;
+  }
+}
+
+.portfolio-card__thumb--gradient {
+  background:
+    radial-gradient(
+      circle at 18% 25%,
+      rgba(45, 212, 191, 0.22),
+      transparent 48%
+    ),
+    radial-gradient(
+      circle at 78% 70%,
+      rgba(109, 86, 255, 0.35),
+      transparent 52%
+    ),
+    linear-gradient(140deg, #111726 0%, #171d2d 100%);
+}
+
+.portfolio-card__thumb-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #fff;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.is-visible-message {
+  display: block !important;
+}
+
+/* === SERVICE CARD PRICE BADGE === */
+.service-card__price {
+  margin-top: var(--sp-5, 1.25rem);
+  padding-top: var(--sp-4, 1rem);
+  border-top: 1px solid rgba(109, 86, 255, 0.15);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--c-accent-2, #a78bfa);
+  letter-spacing: 0.01em;
+}
+
+/* === PRICING CARD PRICE === */
+.pricing-card__price {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--c-white, #fff);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--sp-1, 0.25rem);
+  line-height: 1.1;
+}
+
+.nav-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.lang-pill {
+  display: inline-flex;
+  background: var(--lang-bg);
+  border: 1px solid var(--lang-border);
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
+}
+
+.lang-pill__btn {
+  border: 0;
+  background: transparent;
+  color: #cbd5e1;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.lang-pill__btn:hover {
+  color: #fff;
+}
+
+.lang-pill__btn.is-active {
+  background: var(--lang-active);
+  color: #fff;
+}
+
+.is-active-link {
+  color: #60a5fa !important;
+}
+
+.analytics-controls {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: 1fr auto;
+  margin: 1rem 0;
+}
+
+.analytics-output {
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 14px;
+  padding: 1rem;
+  overflow: auto;
+}
+
+@media (max-width: 768px) {
+  .nav-tools .nav__cta {
+    display: none;
+  }
+
+  .nav-tools {
+    gap: 0.4rem;
+  }
+
+  .lang-pill__btn {
+    padding: 0.45rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .analytics-controls {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   SCROLL REVEAL SYSTEM (IntersectionObserver + transition)
+   Elements start hidden; .is-visible added by useScrollReveal
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease;
+}
+.reveal--up {
+  transform: translateY(32px);
+}
+.reveal--left {
+  transform: translateX(-32px);
+}
+.reveal--right {
+  transform: translateX(32px);
+}
+.reveal--scale {
+  transform: scale(0.92);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger: transition-delay for grid children */
+.pricing-grid .pricing-card:nth-child(2) {
+  transition-delay: 0.08s;
+}
+.pricing-grid .pricing-card:nth-child(3) {
+  transition-delay: 0.16s;
+}
+.pricing-grid .pricing-card:nth-child(4) {
+  transition-delay: 0.24s;
+}
+.pricing-grid .pricing-card:nth-child(5) {
+  transition-delay: 0.32s;
+}
+.pricing-grid .pricing-card:nth-child(6) {
+  transition-delay: 0.4s;
+}
+
+.portfolio-grid .portfolio-card:nth-child(2) {
+  transition-delay: 0.09s;
+}
+.portfolio-grid .portfolio-card:nth-child(3) {
+  transition-delay: 0.18s;
+}
+
+.testimonials-grid .testimonial-card:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.testimonials-grid .testimonial-card:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.process-grid .process-step:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.process-grid .process-step:nth-child(3) {
+  transition-delay: 0.2s;
+}
+.process-grid .process-step:nth-child(4) {
+  transition-delay: 0.3s;
+}
+
+.values-grid .value-card:nth-child(2) {
+  transition-delay: 0.08s;
+}
+.values-grid .value-card:nth-child(3) {
+  transition-delay: 0.16s;
+}
+.values-grid .value-card:nth-child(4) {
+  transition-delay: 0.24s;
+}
+
+.location-grid .location-card:nth-child(2) {
+  transition-delay: 0.08s;
+}
+.location-grid .location-card:nth-child(3) {
+  transition-delay: 0.16s;
+}
+.location-grid .location-card:nth-child(4) {
+  transition-delay: 0.24s;
+}
+
+/* ============================================================
+   HOVER LIFT EFFECTS (only when already visible)
+   ============================================================ */
+.pricing-card.is-visible:hover,
+.pricing-card:not(.reveal):hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 64px rgba(109, 86, 255, 0.22);
+}
+
+.portfolio-card.is-visible:hover,
+.portfolio-card:not(.reveal):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(37, 99, 235, 0.18);
+}
+
+.testimonial-card.is-visible:hover,
+.testimonial-card:not(.reveal):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(109, 86, 255, 0.16);
+}
+
+.value-card {
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease;
+}
+.value-card.is-visible:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(109, 86, 255, 0.14);
+}
+
+/* Process steps: slide on hover */
+.process-step {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.process-step:hover {
+  transform: translateX(6px);
+}
+
+/* ============================================================
+   HERO ENHANCEMENTS
+   ============================================================ */
+
+/* Animate title in with fade-up + persistent subtle glow pulse */
+@keyframes titleGlow {
+  0%,
+  100% {
+    text-shadow: 0 0 0px transparent;
+  }
+  50% {
+    text-shadow:
+      0 0 48px rgba(109, 86, 255, 0.28),
+      0 0 80px rgba(45, 212, 191, 0.1);
+  }
+}
+
+.hero__title.fade-up {
+  animation:
+    revealUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both,
+    titleGlow 5s ease-in-out 1.5s infinite;
+}
+
+/* Hero subtitle entrance */
+.hero__subtitle {
+  animation: revealUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+/* Stat value stagger entrance */
+.hero__stats > div:nth-child(1) .hero__stat-value {
+  animation-delay: 0.35s;
+}
+.hero__stats > div:nth-child(2) .hero__stat-value {
+  animation-delay: 0.45s;
+}
+.hero__stats > div:nth-child(3) .hero__stat-value {
+  animation-delay: 0.55s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero__title.fade-up,
+  .hero__subtitle,
+  .hero__stats > div .hero__stat-value {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   LEGAL PAGES (Privacy Policy, Impressum)
+   ============================================================ */
+
+.legal-content {
+  max-width: 780px;
+  margin-inline: auto;
+  padding-block: 2rem 5rem;
+}
+
+.legal-intro {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--clr-text-muted, #94a3b8);
+  margin-bottom: 3rem;
+}
+
+.legal-content h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--clr-text, #e2e8f0);
+  margin-top: 2.25rem;
+  margin-bottom: 0.6rem;
+}
+
+.legal-content p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--clr-text-muted, #94a3b8);
+  margin-bottom: 0.5rem;
+}
